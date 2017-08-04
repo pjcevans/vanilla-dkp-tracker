@@ -18,13 +18,27 @@ class ExportForm extends Component {
     this.setState({ dkp: e.target.value });
   }
   handleSubmit(e) {
+    // Prevent normal submit as post is handled by axios
     e.preventDefault();
+
+    // Values for submission are taken from local state which is used to
+    // set form fields
     let date = this.state.date.trim();
     let dkp = this.state.dkp.trim();
     if (!date || !dkp) {
       return;
     }
-    this.props.onExportSubmit({ date: date, dkp: dkp });
+
+    // Cleanse dataset to remove silly LUA boilerplate
+    let stringStart = dkp.indexOf("{")
+    let shortenedString = dkp.substring(stringStart)
+    let filteredString = shortenedString.replace(/=/g, ":")
+    filteredString = filteredString.replace(/[\[\]']+/g,'')
+    filteredString = filteredString.replace(/,(?=[^,]*$)/, '')
+
+
+    // Submit the export and clear current state
+    this.props.onExportSubmit({ date: date, dkp: filteredString });
     this.setState({ date: '', dkp: '' });
   }
   render() {
