@@ -4,7 +4,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var Person = require('./model/people');
+var Export = require('./model/exports');
 var auth = require('./auth');
 
 
@@ -40,12 +40,12 @@ router.get('/', function(req, res) {
   res.json({ message: 'API Initialized!'});
 });
 
-//adding the /comments route to our /api router
-router.route('/people')
-  //retrieve all comments from the database
+//adding the /exports route to our /api router
+router.route('/exports')
+  //retrieve all exports from the database
   .get(function(req, res) {
-    //looks at our Comment Schema
-    Person.find(function(err, people) {
+    //looks at our Export Schema
+    Export.find(function(err, people) {
       if (err)
         res.send(err);
       //responds with a json object of our database comments.
@@ -55,10 +55,11 @@ router.route('/people')
   //post new comment to the database
   .post(function(req, res) {
     //body parser lets us use the req.body
-    Person.findOneAndUpdate(
-      { player: req.body.player },
-      {$push: {dkpdata: {date: req.body.date, dkp: req.body.dkp}}},
-      {safe: true, upsert: true},
+    Export.findOneAndUpdate(
+      { date: req.body.date },
+      { dkpdata: req.body.dkp },
+      // { $push: {dkpdata: req.body.dkp} },
+      { safe: true, upsert: true },
       function(err, model) {
           console.log(err);
       });

@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import style from './style';
 
-class CommentForm extends Component {
+class ExportForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { player: '', date: '', dkp: '' };
-    this.handlePlayerChange = this.handlePlayerChange.bind(this);
+    this.state = { date: '', dkp: '' };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleDkpChange = this.handleDkpChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handlePlayerChange(e) {
-    this.setState({ player: e.target.value });
-  }
+
   handleDateChange(e) {
     this.setState({ date: e.target.value });
   }
@@ -22,26 +19,18 @@ class CommentForm extends Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    let player = this.state.player.trim();
     let date = this.state.date.trim();
     let dkp = this.state.dkp.trim();
-    if (!player || !date || !dkp) {
+    if (!date || !dkp) {
       return;
     }
-    this.props.onPersonSubmit({ player: player, date: date, dkp: dkp });
-    this.setState({ player: '', date: '', dkp: '' });
-    console.log(this.state.data)
+    this.props.onExportSubmit({ date: date, dkp: dkp });
+    this.setState({ date: '', dkp: '' });
   }
   render() {
     return (
       <form style={ style.commentForm } onSubmit={ this.handleSubmit }>
 
-        <input
-          type='text'
-          placeholder='Player name...'
-          style={ style.commentFormText}
-          value={ this.state.player }
-          onChange={ this.handlePlayerChange } />
         <input
           type='text'
           placeholder='The date...'
@@ -63,4 +52,4 @@ class CommentForm extends Component {
   }
 }
 
-export default CommentForm;
+export default ExportForm;

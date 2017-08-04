@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Person from './Person';
+import Export from './Export';
 import style from './style';
 
-class PersonList extends Component {
+class ExportList extends Component {
   render() {
-    let commentNodes = this.props.data.map(person => {
+    let commentNodes = this.props.data.map(item => {
       return (
-        <Person person={ person } key={ person.player } />
+        <Export export={ item } key={ item.date } />
       )
     })
     return (
@@ -17,4 +17,4 @@ class PersonList extends Component {
   }
 }
 
-export default PersonList;
+export default ExportList;
