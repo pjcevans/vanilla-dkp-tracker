@@ -4,7 +4,6 @@ import style from './style';
 class Export extends Component {
   render() {
     var dkpExport = JSON.parse(this.props.export.dkpdata)
-    console.log(dkpExport)
     var dkpValues = []
     for(let item in dkpExport) {
       dkpValues.push(<li key={item}>{ item + " - " + dkpExport[item] }</li>)

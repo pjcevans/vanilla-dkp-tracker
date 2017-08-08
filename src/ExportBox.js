@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ExportList from './ExportList';
-import ExportForm from './ExportForm';
+import DkpMetadata from './DkpMetadata';
+import ExportContent from './ExportContent';
 import style from './style';
 
 class ExportBox extends Component {
@@ -25,7 +25,6 @@ class ExportBox extends Component {
     // let newPeople = people.concat([person]);
     // this.setState({ data: newPeople });
 
-    console.log(dkpExport)
 
     // Post the data to mongo to be stored
     axios.post(this.props.url, dkpExport)
@@ -41,9 +40,9 @@ class ExportBox extends Component {
   render() {
     return (
       <div style={ style.commentBox }>
-        <h2>Exports:</h2>
-      <ExportList data={ this.state.data }/>
-      <ExportForm onExportSubmit={ this.handleExportSubmit }/>
+        <h2>Certus Excessum DKP Tracker</h2>
+        <DkpMetadata data={this.state.data} />
+        <ExportContent data={this.state.data} onExportSubmit={ this.handleExportSubmit }/>
       </div>
     )
   }

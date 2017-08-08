@@ -50,7 +50,7 @@ router.route('/exports')
         res.send(err);
       //responds with a json object of our database comments.
       res.json(people)
-    });
+    }).sort('date');
   })
   //post new comment to the database
   .post(function(req, res) {
