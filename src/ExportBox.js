@@ -7,7 +7,7 @@ import style from './style';
 class ExportBox extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: [] };
+    this.state = { data: [], focus: "" };
     this.loadExportsFromServer = this.loadExportsFromServer.bind(this);
     this.handleExportSubmit = this.handleExportSubmit.bind(this);
   }
@@ -41,8 +41,10 @@ class ExportBox extends Component {
     return (
       <div style={ style.commentBox }>
         <h2>Certus Excessum DKP Tracker</h2>
-        <DkpMetadata data={this.state.data} />
-        <ExportContent data={this.state.data} onExportSubmit={ this.handleExportSubmit }/>
+        <DkpMetadata data={ this.state.data } />
+        <ExportContent data={ this.state.data }
+                       onExportSubmit={ this.handleExportSubmit }
+                       focus={ this.state.focus }/>
       </div>
     )
   }

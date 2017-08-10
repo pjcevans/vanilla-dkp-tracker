@@ -12,7 +12,7 @@ const style = {
     border:'1px solid #f1f1f1',
     padding:'0 12px',
     maxHeight:'70vh',
-    overflow:'scroll'
+    display: "flex"
   },
   comment: {
     backgroundColor:'#fafafa',
