@@ -71,7 +71,7 @@ router.route('/exports')
   });
 
 //Use our router configuration when we call /api
-app.use('/api', router);
+app.use('https://cedkp.heroku.com/api', router);
 
 //starts the server and listens for requests
 app.listen(port, function() {
