@@ -3,7 +3,6 @@
 //first we import our dependencies...
 var express = require('express');
 var mongoose = require('mongoose');
-var path = require('path');
 var bodyParser = require('body-parser');
 var Export = require('./model/exports');
 var auth = require('./auth');
@@ -44,7 +43,7 @@ router.get('/', function(req, res) {
 });
 
 //adding the /exports route to our /api router
-router.route('/api/exports')
+router.route('/exports')
   //retrieve all exports from the database
   .get(function(req, res) {
     //looks at our Export Schema
@@ -72,7 +71,7 @@ router.route('/api/exports')
   });
 
 //Use our router configuration when we call /api
-app.use(express.static(path.join(__dirname, '/api')), router);
+app.use("/api", router);
 
 //starts the server and listens for requests
 app.listen(port, function() {
