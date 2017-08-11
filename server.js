@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var Export = require('./model/exports');
 var auth = require('./auth');
 
-(process.env.PROD_MONGODB) ? auth = process.env.PROD_MONGODB : auth = auth;
+(process.env.PROD_MONGODB) ? auth = process.env.PROD_MONGODB : auth = auth.mongodb;
 
 //and create our instances
 var app = express();
@@ -16,7 +16,7 @@ var router = express.Router();
 //set our port to either a predetermined port number if you have set it up, or 3001
 var port = process.env.API_PORT || 3001;
 
-mongoose.connect(auth.mongodb, { useMongoClient: true })
+mongoose.connect(auth, { useMongoClient: true })
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
@@ -30,6 +30,7 @@ app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+
 
   //and remove cacheing so we get the most recent comments
   res.setHeader('Cache-Control', 'no-cache');
