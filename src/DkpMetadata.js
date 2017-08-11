@@ -19,7 +19,7 @@ class DkpMetadata extends Component {
 
       //remove all zero value dkp entries
       dkpValues = dkpValues.filter(item => {
-        return item != 0;
+        return item !== 0;
       })
 
       var totalDkp = dkpValues.reduce((sum, value) => {

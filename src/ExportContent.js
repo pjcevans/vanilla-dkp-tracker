@@ -14,6 +14,7 @@ class ExportContent extends Component {
     let contentItems = [];
     if (this.props.focus === "") {
       contentItems.push(<ExportList data={ this.props.data }/>)
+      contentItems.push(<ExportForm onExportSubmit={ this.props.onExportSubmit }/>)
 
     } else if (this.props.focus === "all") {
       contentItems.push(<ExportShowAll data={ this.props.data }/>)

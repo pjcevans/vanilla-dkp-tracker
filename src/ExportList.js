@@ -74,7 +74,7 @@ class ExportList extends Component {
         <div style={ style.commentList }>
           <table>
             <tbody>
-          { (exportTableRows) ? exportTableRows : <p>No player selected</p>}
+          { (exportTableRows) ? exportTableRows : <tr><td>No player selected</td></tr>}
             </tbody>
           </table>
           <LineChart width={700} height={550} data={exportTableData}>
