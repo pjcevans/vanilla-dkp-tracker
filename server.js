@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var Export = require('./model/exports');
 var auth = require('./auth');
 
+(process.env.PROD_MONGODB) ? auth = process.env.PROD_MONGODB : auth = auth;
 
 //and create our instances
 var app = express();
